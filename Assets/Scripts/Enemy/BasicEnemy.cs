@@ -12,9 +12,11 @@ public class BasicEnemy : MonoBehaviour
     public int currencyDrop = 25;
 
     public SplineAnimate splineAnimator;
+    private LevelController levelController;
 
     void Start()
     {
+        levelController = FindFirstObjectByType<LevelController>();
         splineAnimator.Completed += EndOfPath;
     }
 
@@ -26,9 +28,10 @@ public class BasicEnemy : MonoBehaviour
 
     public void EndOfPath()
     {
-        LevelController.PlayerHealth -= Damage;
-        LevelController.enemiesSpawned--;
-        FindFirstObjectByType<LevelController>().CheckWaveComplete();
+        levelController.PlayerHealth -= Damage;
+        levelController.enemiesSpawned--;
+        levelController.CheckWaveComplete();
+        levelController.UpdateMeters();
         Destroy(gameObject);
     }
 
@@ -39,8 +42,9 @@ public class BasicEnemy : MonoBehaviour
 
     private void Die()
     {
-        LevelController.PlayerCurrency += currencyDrop;
-        LevelController.enemiesSpawned--;
-        FindFirstObjectByType<LevelController>().CheckWaveComplete();
+        levelController.PlayerCurrency += currencyDrop;
+        levelController.enemiesSpawned--;
+        levelController.UpdateMeters();
+        levelController.CheckWaveComplete();
     }
 }

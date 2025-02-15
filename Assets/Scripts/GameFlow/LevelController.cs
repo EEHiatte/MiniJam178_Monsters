@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Splines;
 using UnityEngine.UI;
@@ -12,8 +13,10 @@ using UnityEngine.UI;
 public class LevelController : MonoBehaviour 
 {
 
-    public static float PlayerHealth = 0;
-    public static int PlayerCurrency = 0;
+    public float PlayerHealth = 0;
+    public int PlayerCurrency = 0;
+    public TextMeshProUGUI healthMeter;
+    public TextMeshProUGUI currencyMeter;
 
     // TODO: Contain level-specific things here
     // Like something that handles waves/enemy spawning
@@ -25,6 +28,7 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
+        UpdateMeters();
         startWaveButton.onClick.AddListener(OnStartWaveButtonPressed);
         PlayerCurrency = 100;
     }
@@ -50,7 +54,7 @@ public class LevelController : MonoBehaviour
     private int currentWaveNum = 0;
 
     //When an enemy dies or makes it to the end, decrement this number by one
-    public static int enemiesSpawned = 0;
+    public int enemiesSpawned = 0;
 
     public void OnStartWaveButtonPressed()
     {
@@ -95,7 +99,11 @@ public class LevelController : MonoBehaviour
         currentWaveNum++;
         waveStarted = false;
     }
-
-
     #endregion
+
+    public void UpdateMeters()
+    {
+        currencyMeter.text = PlayerCurrency.ToString();
+        healthMeter.text = PlayerHealth.ToString();
+    }
 }

@@ -6,20 +6,25 @@ public class TowerPlacement : MonoBehaviour
 
     public bool IsValidPlacement => _isValidPlacement;
 
-    private void Start()
-    {
-        
-    }
+    private bool DEBUG = false;
     
     private void OnTriggerEnter(Collider other)
     {
         _isValidPlacement = false;
-        Debug.Log($"OnTriggerEnter with {other.gameObject.name}");
+
+        if (DEBUG)
+        {
+            Debug.Log($"OnTriggerEnter with {other.gameObject.name}");
+        }
     }
     
     private void OnTriggerExit(Collider other)
     {
         _isValidPlacement = true;
-        Debug.Log($"OnTriggerExit with {other.gameObject.name}");
+        
+        if (DEBUG)
+        {
+            Debug.Log($"OnTriggerExit with {other.gameObject.name}");
+        }
     }
 }

@@ -38,6 +38,11 @@ public class BasicEnemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health -= damage;
+
+        if (Health <= 0)
+        {
+            Die();
+        }
     }
 
     private void Die()
@@ -46,5 +51,6 @@ public class BasicEnemy : MonoBehaviour
         levelController.enemiesSpawned--;
         levelController.UpdateMeters();
         levelController.CheckWaveComplete();
+        Destroy(gameObject);
     }
 }

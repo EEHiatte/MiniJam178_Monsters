@@ -13,11 +13,14 @@ public class Path : MonoBehaviour
     [SerializeField] private Transform bulgeTransform;
 
     [SerializeField] private MeshRenderer pathRenderer;
+
+    [SerializeField] private MeshRenderer backgroundPathRenderer;
     
     public SplineContainer SplineContainer => splineContainer;
 
     private void Update()
     {
         pathRenderer.material.SetVector("_BulgePosition", bulgeTransform.localPosition);
+        backgroundPathRenderer.material.SetVector("_BulgePosition", bulgeTransform.localPosition);
     }
 }

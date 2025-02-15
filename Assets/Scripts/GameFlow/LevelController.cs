@@ -11,8 +11,24 @@ using UnityEngine.UI;
 /// </summary>
 public class LevelController : MonoBehaviour 
 {
+    // TODO: Contain level-specific things here
+    // Like something that handles waves/enemy spawning
+    // Current player gold, etc
+    [SerializeField]
+    private Path path;
+
+    public Path Path => path;
+
+    void Start()
+    {
+        startWaveButton.onClick.AddListener(OnStartWaveButtonPressed);
+    }
 
     #region Enemy Wave Spawning
+
+    public Button startWaveButton;
+
+    private bool waveStarted = false;
 
     [Serializable]
     public class Wave
@@ -33,27 +49,31 @@ public class LevelController : MonoBehaviour
 
     public void OnStartWaveButtonPressed()
     {
-        StartCoroutine(SpawnNextWave());
+        if(!waveStarted)
+            StartCoroutine(SpawnNextWave());
     }
 
     public IEnumerator SpawnNextWave()
     {
+        waveStarted = true;
         enemiesSpawned = 0;
 
-        foreach(int enemy in Waves[currentWaveNum].Enemies)
+        if (Waves[currentWaveNum] != null)
         {
-            //SpawnEnemyPrefab
-            GameObject t_enemy = Instantiate(EnemyPrefabs[enemy]);
-            BasicEnemy basicEnemy = t_enemy.GetComponent<BasicEnemy>();
+            foreach (int enemy in Waves[currentWaveNum].Enemies)
+            {
+                //SpawnEnemyPrefab
+                GameObject t_enemy = Instantiate(EnemyPrefabs[enemy]);
+                BasicEnemy basicEnemy = t_enemy.GetComponent<BasicEnemy>();
 
-            basicEnemy.splineAnimator.Container = Path.SplineContainer;
-            basicEnemy.splineAnimator.MaxSpeed = basicEnemy.Speed;
-            basicEnemy.splineAnimator.Play();
+                basicEnemy.splineAnimator.Container = Path.SplineContainer;
+                basicEnemy.splineAnimator.MaxSpeed = basicEnemy.Speed;
+                basicEnemy.splineAnimator.Play();
 
-            enemiesSpawned++;
-            yield return new WaitForSeconds(Waves[currentWaveNum].spawnRate);
+                enemiesSpawned++;
+                yield return new WaitForSeconds(Waves[currentWaveNum].spawnRate);
+            }
         }
-
         yield return null;
     }
 
@@ -67,17 +87,9 @@ public class LevelController : MonoBehaviour
 
     public void EndWave()
     {
-        //Re-enable next wave start button
+        waveStarted = false;
     }
 
 
     #endregion
-
-    // TODO: Contain level-specific things here
-    // Like something that handles waves/enemy spawning
-    // Current player gold, etc
-    [SerializeField]
-    private Path path;
-    
-    public Path Path => path;
 }

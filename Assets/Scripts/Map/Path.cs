@@ -83,12 +83,9 @@ public class Path : MonoBehaviour
         
         displacementBuffer = new ComputeBuffer(maxDisplacementPoints, Marshal.SizeOf(typeof(DisplacementPoint)));
         
-        AddDisplacementObject(bulgeTransform, radius, strength);
+        AddDisplacementObject(bulgeTransform, 2, 0.25f);
     }
     
-    public float radius = 1.0f;
-    public float strength = 1.0f;
-
     private void Update()
     {
         for (int i = 0; i < displacementTransforms.Count; i++)
@@ -96,8 +93,8 @@ public class Path : MonoBehaviour
             displacementPoints[i] = new DisplacementPoint
             {
                 position = displacementTransforms[i].localPosition,
-                radius = radius,
-                strength = strength
+                radius = displacementPoints[i].radius,
+                strength = displacementPoints[i].strength
             };
         }
         

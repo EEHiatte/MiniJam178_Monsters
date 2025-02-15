@@ -67,7 +67,7 @@ public class LevelController : MonoBehaviour
         waveStarted = true;
         enemiesSpawned = 0;
 
-        if (Waves[currentWaveNum] != null)
+        if (currentWaveNum < Waves.Count)
         {
             foreach (int enemy in Waves[currentWaveNum].Enemies)
             {

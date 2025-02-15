@@ -58,8 +58,11 @@ public class LevelController : MonoBehaviour
 
     public void OnStartWaveButtonPressed()
     {
-        if(!waveStarted)
+        if (!waveStarted)
+        {
+            startWaveButton.enabled = false;
             StartCoroutine(SpawnNextWave());
+        }
     }
 
     public IEnumerator SpawnNextWave()
@@ -98,6 +101,7 @@ public class LevelController : MonoBehaviour
     {
         currentWaveNum++;
         waveStarted = false;
+        startWaveButton.enabled = true;
     }
     #endregion
 

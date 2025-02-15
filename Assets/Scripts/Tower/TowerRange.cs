@@ -66,6 +66,16 @@ public class TowerRange : MonoBehaviour
         }
     }
 
+    public List<BasicEnemy> GetAllEnemiesInRange()
+    {
+        if (enemiesInRange.Count < 0)
+        {
+            return null;
+        }
+
+        return enemiesInRange;
+    }
+
     private BasicEnemy GetClosestEnemy()
     {
         var myTransform = transform.position;

@@ -2350,7 +2350,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1707460680874757122, guid: 12560c4e8e6b38d46a3855d71085004d, type: 3}
       propertyPath: m_Name
-      value: Tower2Temp
+      value: HeatTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348145495349255535, guid: 12560c4e8e6b38d46a3855d71085004d, type: 3}
+      propertyPath: unlocked
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2348145495349255535, guid: 12560c4e8e6b38d46a3855d71085004d, type: 3}
       propertyPath: towerType
@@ -2359,7 +2363,7 @@ PrefabInstance:
     - target: {fileID: 2348145495349255535, guid: 12560c4e8e6b38d46a3855d71085004d, type: 3}
       propertyPath: towerToSpawn
       value: 
-      objectReference: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
+      objectReference: {fileID: 4841198982012463486, guid: 9827f3bee4199a64b8c89f283f4e45ec, type: 3}
     - target: {fileID: 3114765173400836846, guid: 12560c4e8e6b38d46a3855d71085004d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

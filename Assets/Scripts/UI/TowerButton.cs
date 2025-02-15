@@ -45,6 +45,5 @@ public class TowerButton : MonoBehaviour
     private void SetButtonInteractable()
     {
         button.interactable = unlocked && _cachedPlayerCurrency >= _cachedPrice;
-
     }
 }

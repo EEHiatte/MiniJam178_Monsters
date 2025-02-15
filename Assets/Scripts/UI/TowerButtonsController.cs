@@ -63,5 +63,5 @@ public enum TowerButtonType
 {
     None,
     WhiteBloodCell,
-    Tower2Temp,
+    HeatTower,
 }

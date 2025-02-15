@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Controller for a level's handling.
 /// </summary>
-public class LevelController : Controller 
+public class LevelController : MonoBehaviour 
 {
 
     #region Enemy Wave Spawning
@@ -80,14 +80,4 @@ public class LevelController : Controller
     private Path path;
     
     public Path Path => path;
-    
-    protected override bool RegisterToManager()
-    {
-        return GameManager.Instance.RegisterController(this);
-    }
-
-    protected override bool UnregisterFromManager()
-    {
-        return GameManager.Instance.UnregisterController(this);
-    }
 }

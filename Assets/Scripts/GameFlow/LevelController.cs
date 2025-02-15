@@ -11,6 +11,10 @@ using UnityEngine.UI;
 /// </summary>
 public class LevelController : MonoBehaviour 
 {
+
+    public static float PlayerHealth = 0;
+    public static int PlayerCurrency = 0;
+
     // TODO: Contain level-specific things here
     // Like something that handles waves/enemy spawning
     // Current player gold, etc
@@ -22,6 +26,7 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         startWaveButton.onClick.AddListener(OnStartWaveButtonPressed);
+        PlayerCurrency = 100;
     }
 
     #region Enemy Wave Spawning
@@ -87,6 +92,7 @@ public class LevelController : MonoBehaviour
 
     public void EndWave()
     {
+        currentWaveNum++;
         waveStarted = false;
     }
 

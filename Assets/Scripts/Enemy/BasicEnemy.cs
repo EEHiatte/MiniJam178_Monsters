@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Splines;
+using UnityEngine.Splines.Interpolators;
 
 public class BasicEnemy : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class BasicEnemy : MonoBehaviour
     /// Enemy Stats
     /// </summary>
     public float Health = 100;
+    public float MaxHealth = 100;
     public float Speed = 5;
     public float Damage = 1;
     public int currencyDrop = 25;
@@ -39,6 +41,7 @@ public class BasicEnemy : MonoBehaviour
     {
         Health -= damage;
 
+        GetComponent<SpriteRenderer>().color = Color.Lerp(Color.white, Color.red, Health/MaxHealth);
         if (Health <= 0)
         {
             Die();

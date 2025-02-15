@@ -1,0 +1,55 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+#include <UnityShaderVariables.cginc>
+
+struct DisplacementPoint {
+    float3 position;
+    float radius;
+    float strength;
+};
+
+struct VertexData {
+    float3 position;
+};
+
+StructuredBuffer<DisplacementPoint> _DisplacementPoints;
+int _DisplacementPointsCount;
+
+RWStructuredBuffer<VertexData> _Vertices;
+RWStructuredBuffer<VertexData> _BackgroundVertices;
+
+[numthreads(64,1,1)]
+void CSMain (uint id : SV_DispatchThreadID)
+{
+    // Ensure the thread corresponds to a valid vertex.
+    if (id >= _Vertices.Length)
+        return;
+    
+    VertexData v = _Vertices[id];
+    VertexData bg = _BackgroundVertices[id];
+    float3 originalPos = v.position;
+    float3 totalDisplacement = float3(0,0,0);
+    float3 bgOriginalPos = bg.position;
+    float3 totalBgDisplacement = float3(0,0,0);
+
+    // Loop over each displacement point.
+    for (int i = 0; i < _DisplacementPointsCount; i++)
+    {
+        DisplacementPoint dp = _DisplacementPoints[i];
+        float3 diff = originalPos - dp.position;
+        float dist = length(diff);
+        float factor = 1.0 - smoothstep(0.0, dp.radius, dist);
+        totalDisplacement += normalize(diff) * dp.strength * factor;
+
+        diff = bgOriginalPos - dp.position;
+        dist = length(diff);
+        factor = 1.0 - smoothstep(0.0, dp.radius, dist);
+        totalBgDisplacement += normalize(diff) * dp.strength * factor;
+    }
+
+    // Update the vertex position.
+    v.position = originalPos + totalDisplacement;
+    _Vertices[id] = v;
+    bg.position = bgOriginalPos + totalBgDisplacement;
+    _BackgroundVertices[id] = bg;
+}

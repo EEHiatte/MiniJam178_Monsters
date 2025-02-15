@@ -496,8 +496,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splineContainer: {fileID: 1811511110}
   bulgeTransform: {fileID: 1881114029}
-  pathRenderer: {fileID: 1811511108}
-  backgroundPathRenderer: {fileID: 1456107422}
+  pathMeshFilter: {fileID: 1811511109}
+  backgroundPathMeshFilter: {fileID: 1456107425}
+  pathDisplacementShader: {fileID: 7200000, guid: f342d12b6c1b65d48988bb23c1ecb33f, type: 3}
+  maxDisplacementPoints: 1024
+  radius: 2
+  strength: 0.5
 --- !u!4 &619891053
 Transform:
   m_ObjectHideFlags: 0
@@ -1048,7 +1052,7 @@ MonoBehaviour:
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
   m_Sides: 8
-  m_SegmentsPerUnit: 4
+  m_SegmentsPerUnit: 10
   m_Capped: 1
   m_Radius: 0.75
   m_Range: {x: 0, y: 1}
@@ -1730,7 +1734,7 @@ MonoBehaviour:
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
   m_Sides: 8
-  m_SegmentsPerUnit: 4
+  m_SegmentsPerUnit: 10
   m_Capped: 1
   m_Radius: 0.25
   m_Range: {x: 0, y: 1}

@@ -63,7 +63,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _TimeOffset: 1
+    - _TimeOffset: 10
     - _ZWrite: 0
     m_Colors:
     - _ABulgePosition: {r: 0.05, g: 0, b: 1.56, a: 0}

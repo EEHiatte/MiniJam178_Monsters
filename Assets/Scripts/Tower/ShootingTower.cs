@@ -33,6 +33,10 @@ public class ShootingTowerDamage : DamagingTowerBase
             yield return new WaitForEndOfFrame();
             currentTime += Time.deltaTime;
             var delta = currentTime / firetime;
+            
+            if(target != null)
+                endingPosition = new Vector3(target.gameObject.transform.position.x, target.gameObject.transform.position.y, 0f);
+            
             bullet.transform.position = Vector3.Lerp(startingPosition, endingPosition, delta);
         }
 

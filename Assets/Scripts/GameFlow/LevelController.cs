@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Splines;
 using UnityEngine.UI;
 
 /// <summary>
@@ -14,10 +12,24 @@ public class LevelController : MonoBehaviour
 {
 
     public float PlayerHealth = 0;
-    public int PlayerCurrency = 0;
     public TextMeshProUGUI healthMeter;
     public TextMeshProUGUI currencyMeter;
+    
+    private int _playerCurrency;
 
+    public int PlayerCurrency
+    {
+        get => _playerCurrency;
+        set
+        {
+            _playerCurrency = value;
+            UpdateMeters();
+            OnCurrencyUpdate?.Invoke(this, null);
+        }
+    }
+
+    public event EventHandler OnCurrencyUpdate; 
+    
     // TODO: Contain level-specific things here
     // Like something that handles waves/enemy spawning
     // Current player gold, etc
@@ -104,7 +116,8 @@ public class LevelController : MonoBehaviour
         startWaveButton.enabled = true;
     }
     #endregion
-
+    
+    
     public void UpdateMeters()
     {
         currencyMeter.text = PlayerCurrency.ToString();

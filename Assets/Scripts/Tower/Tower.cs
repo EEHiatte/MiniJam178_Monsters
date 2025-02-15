@@ -11,6 +11,8 @@ public class Tower : MonoBehaviour
     [SerializeField] private float towerDamage;
     
     [SerializeField] private int towerCost;
+
+    public int TowerCost => towerCost;
     
     private TowerState _towerState = TowerState.Disabled;
     public event EventHandler TowerPlacementResolved;
@@ -35,7 +37,7 @@ public class Tower : MonoBehaviour
         }
     }
     
-    public void PlaceTower()
+    public void StartPlacement()
     {
         _towerState = TowerState.Placing;
         FollowMouse();
@@ -89,8 +91,7 @@ public class Tower : MonoBehaviour
                 towerPlacement.gameObject.SetActive(false);
                 towerRange.ShowRangeIndicator(false);
                 this.tag = "Tower";
-                TowerPlacementResolved?.Invoke(null, null);
-                // TODO charge the coin balance.
+                TowerPlacementResolved?.Invoke(this, null);
             }
         }
         else if (Input.GetMouseButtonDown(1))

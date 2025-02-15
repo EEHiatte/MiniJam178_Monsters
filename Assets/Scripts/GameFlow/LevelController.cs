@@ -75,7 +75,7 @@ public class LevelController : MonoBehaviour
             foreach (int enemy in Waves[currentWaveNum].Enemies)
             {
                 //SpawnEnemyPrefab
-                GameObject t_enemy = Instantiate(EnemyPrefabs[enemy]);
+                GameObject t_enemy = Instantiate(EnemyPrefabs[enemy], new Vector3(1000,1000,1000), EnemyPrefabs[enemy].transform.rotation);
                 BasicEnemy basicEnemy = t_enemy.GetComponent<BasicEnemy>();
 
                 basicEnemy.splineAnimator.Container = Path.SplineContainer;

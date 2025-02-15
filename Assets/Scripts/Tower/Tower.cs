@@ -1,12 +1,19 @@
+using System;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
     [SerializeField] private TowerPlacement towerPlacement;
     
-    // By default the tower isn't placed...
-    private bool _towerBeingPlaced = true;
-    
+    private bool _towerBeingPlaced = false;
+
+    public event EventHandler TowerPlacementResolved;
+
+    public void PlaceTower()
+    {
+        _towerBeingPlaced = true;
+        FollowMouse();
+    }
     private void Update()
     {
         towerPlacement.gameObject.SetActive(_towerBeingPlaced);
@@ -16,12 +23,16 @@ public class Tower : MonoBehaviour
         {
             return;
         }
-        
+
+        FollowMouse();
+        CheckInput();
+    }
+
+    private void FollowMouse()
+    {
         var mainCamera = Camera.main;
         var mousePosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCamera.transform.position.z));
-        this.gameObject.transform.position = mousePosition;
-
-        CheckInput();
+        gameObject.transform.position = mousePosition;
     }
 
     private void CheckInput()
@@ -32,10 +43,12 @@ public class Tower : MonoBehaviour
             {
                 _towerBeingPlaced = false;
                 towerPlacement.gameObject.SetActive(false);
+                TowerPlacementResolved?.Invoke(null, null);
             }
         }
         else if (Input.GetMouseButtonDown(1))
         {
+            TowerPlacementResolved?.Invoke(null, null);
             Destroy(this.gameObject);
             // TODO notify the game controller to refund?
         }

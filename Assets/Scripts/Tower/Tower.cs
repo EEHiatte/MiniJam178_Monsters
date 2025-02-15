@@ -4,16 +4,21 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] private TowerPlacement towerPlacement;
+    [SerializeField] private TowerRange towerRange;
+    [SerializeField] private float towerFireRate;
     
+    [SerializeField] private int towerCost;
+    
+    // Placement
     private bool _towerBeingPlaced = false;
-
     public event EventHandler TowerPlacementResolved;
-
+    
     public void PlaceTower()
     {
         _towerBeingPlaced = true;
         FollowMouse();
     }
+    
     private void Update()
     {
         towerPlacement.gameObject.SetActive(_towerBeingPlaced);
@@ -24,6 +29,7 @@ public class Tower : MonoBehaviour
             return;
         }
 
+        towerRange.ShowRangeIndicator(true);
         FollowMouse();
         CheckInput();
     }
@@ -43,6 +49,7 @@ public class Tower : MonoBehaviour
             {
                 _towerBeingPlaced = false;
                 towerPlacement.gameObject.SetActive(false);
+                towerRange.ShowRangeIndicator(false);
                 TowerPlacementResolved?.Invoke(null, null);
             }
         }
@@ -54,5 +61,21 @@ public class Tower : MonoBehaviour
         }
     }
     
-    
+    private void OnMouseEnter()
+    {
+        if (_towerBeingPlaced)
+        {
+            return;
+        }
+        towerRange.ShowRangeIndicator(true);
+    }
+
+    private void OnMouseExit()
+    {
+        if (_towerBeingPlaced)
+        {
+            return;
+        }
+        towerRange.ShowRangeIndicator(false);
+    }
 }

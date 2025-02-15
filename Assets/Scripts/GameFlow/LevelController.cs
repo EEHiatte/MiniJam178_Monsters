@@ -88,6 +88,7 @@ public class LevelController : MonoBehaviour
             {
                 //SpawnEnemyPrefab
                 GameObject t_enemy = Instantiate(EnemyPrefabs[enemy], new Vector3(1000,1000,1000), EnemyPrefabs[enemy].transform.rotation);
+                t_enemy.transform.parent = Path.SplineContainer.transform;
                 BasicEnemy basicEnemy = t_enemy.GetComponent<BasicEnemy>();
 
                 basicEnemy.splineAnimator.Container = Path.SplineContainer;

@@ -2140,7 +2140,7 @@ PrefabInstance:
     - target: {fileID: 2348145495349255535, guid: 12560c4e8e6b38d46a3855d71085004d, type: 3}
       propertyPath: towerToSpawn
       value: 
-      objectReference: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
+      objectReference: {fileID: 6872729522899332095, guid: fe793df5ca34fed4b865fb0386dc315c, type: 3}
     - target: {fileID: 3114765173400836846, guid: 12560c4e8e6b38d46a3855d71085004d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

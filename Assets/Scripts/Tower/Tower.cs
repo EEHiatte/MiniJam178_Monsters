@@ -4,34 +4,72 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] private TowerPlacement towerPlacement;
-    [SerializeField] private TowerRange towerRange;
+    [SerializeField] protected TowerRange towerRange;
+    [SerializeField] protected DamagingTowerBase damagingTowerHandler;
+   
     [SerializeField] private float towerFireRate;
+    [SerializeField] private float towerDamage;
     
     [SerializeField] private int towerCost;
     
-    // Placement
-    private bool _towerBeingPlaced = false;
+    private TowerState _towerState = TowerState.Disabled;
     public event EventHandler TowerPlacementResolved;
+
+    private TowerActiveHelper _towerActiveHelper = new TowerActiveHelper();
+    
+    public class TowerActiveHelper
+    {
+        private float _attackTimer;
+
+        public bool CanAttack => _attackTimer <= 0f;
+        
+        public void Update(float deltaTime)
+        {
+            if (_attackTimer > 0f)
+                _attackTimer -= deltaTime;
+        }
+
+        public void Reset(float attackRate)
+        {
+            _attackTimer = attackRate;
+        }
+    }
     
     public void PlaceTower()
     {
-        _towerBeingPlaced = true;
+        _towerState = TowerState.Placing;
         FollowMouse();
+        this.tag = "Tower_Placement";
+        towerPlacement.gameObject.SetActive(true);
+        
+        _towerActiveHelper.Reset(towerFireRate);
     }
     
     private void Update()
     {
-        towerPlacement.gameObject.SetActive(_towerBeingPlaced);
-        this.tag = _towerBeingPlaced ? "Tower_Placement" : "Tower";
-        
-        if (!_towerBeingPlaced)
+        if (_towerState == TowerState.Disabled)
         {
             return;
         }
+        
+        if (_towerState == TowerState.Placing)
+        {
+            towerRange.ShowRangeIndicator(true);
+            FollowMouse();
+            CheckInput();
+        }
+        else if (_towerState == TowerState.Active)
+        {
+            _towerActiveHelper.Update(Time.deltaTime);
 
-        towerRange.ShowRangeIndicator(true);
-        FollowMouse();
-        CheckInput();
+            if (_towerActiveHelper.CanAttack)
+            {
+                if (damagingTowerHandler.OnTryDamage(new DamagingTowerBase.DamageInfo(towerRange, towerDamage)))
+                {
+                    _towerActiveHelper.Reset(towerFireRate);
+                }
+            }
+        }
     }
 
     private void FollowMouse()
@@ -47,23 +85,24 @@ public class Tower : MonoBehaviour
         {
             if (towerPlacement.IsValidPlacement)
             {
-                _towerBeingPlaced = false;
+                _towerState = TowerState.Active;
                 towerPlacement.gameObject.SetActive(false);
                 towerRange.ShowRangeIndicator(false);
+                this.tag = "Tower";
                 TowerPlacementResolved?.Invoke(null, null);
+                // TODO charge the coin balance.
             }
         }
         else if (Input.GetMouseButtonDown(1))
         {
             TowerPlacementResolved?.Invoke(null, null);
             Destroy(this.gameObject);
-            // TODO notify the game controller to refund?
         }
     }
     
     private void OnMouseEnter()
     {
-        if (_towerBeingPlaced)
+        if (_towerState == TowerState.Placing)
         {
             return;
         }
@@ -72,10 +111,17 @@ public class Tower : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (_towerBeingPlaced)
+        if (_towerState == TowerState.Placing)
         {
             return;
         }
         towerRange.ShowRangeIndicator(false);
     }
+}
+
+public enum TowerState
+{
+    Disabled,
+    Placing,
+    Active
 }

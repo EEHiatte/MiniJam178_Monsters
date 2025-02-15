@@ -217,6 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splineContainer: {fileID: 1811511110}
+  bulgeTransform: {fileID: 2132602029}
+  pathRenderer: {fileID: 1811511108}
 --- !u!4 &619891053
 Transform:
   m_ObjectHideFlags: 0
@@ -837,7 +839,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: dac0c3bbbf5687c4488c8f3a301b5fa1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1159,7 +1161,8 @@ Transform:
   m_LocalPosition: {x: 8.97, y: -5.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2132602029}
   m_Father: {fileID: 619891053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1811511112

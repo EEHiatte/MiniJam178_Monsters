@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -8,6 +9,15 @@ public class Path : MonoBehaviour
 {
     [SerializeField]
     private SplineContainer splineContainer; // Maybe change it to something dynamic instead of serialized.
+
+    [SerializeField] private Transform bulgeTransform;
+
+    [SerializeField] private MeshRenderer pathRenderer;
     
     public SplineContainer SplineContainer => splineContainer;
+
+    private void Update()
+    {
+        pathRenderer.material.SetVector("_BulgePosition", bulgeTransform.localPosition);
+    }
 }

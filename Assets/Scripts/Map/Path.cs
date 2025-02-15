@@ -49,10 +49,11 @@ public class Path : MonoBehaviour
 
     public void AddDisplacementObject(Transform displacer, float radius, float strength)
     {
+        Debug.Log($"Path - Line: 52 - displacer: {displacer}");
         displacementTransforms.Add(displacer);
         displacementPoints.Add(new DisplacementPoint
         {
-            position = displacer.position,
+            position = displacer.localPosition,
             radius = radius,
             strength = strength
         });

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Splines;
 using UnityEngine.Splines.Interpolators;
 
@@ -15,6 +16,8 @@ public class BasicEnemy : MonoBehaviour
 
     public SplineAnimate splineAnimator;
     private LevelController levelController;
+    
+    public UnityAction OnDeath;
 
     void Start()
     {
@@ -30,6 +33,7 @@ public class BasicEnemy : MonoBehaviour
 
     public void EndOfPath()
     {
+        OnDeath?.Invoke();
         levelController.PlayerHealth -= Damage;
         levelController.enemiesSpawned--;
         levelController.CheckWaveComplete();
@@ -50,6 +54,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void Die()
     {
+        OnDeath?.Invoke();
         levelController.PlayerCurrency += currencyDrop;
         levelController.enemiesSpawned--;
         levelController.UpdateMeters();

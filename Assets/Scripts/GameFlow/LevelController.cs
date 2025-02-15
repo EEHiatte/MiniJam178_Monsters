@@ -23,6 +23,7 @@ public class LevelController : MonoBehaviour
         set
         {
             _playerCurrency = value;
+            UpdateMeters();
             OnCurrencyUpdate?.Invoke(this, null);
         }
     }

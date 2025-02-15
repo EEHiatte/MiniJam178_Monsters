@@ -930,6 +930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1295550572}
+  levelController: {fileID: 2128815335}
 --- !u!225 &1295550572
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2531,7 +2532,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHealth: 50
-  PlayerCurrency: 100
   healthMeter: {fileID: 1776682719}
   currencyMeter: {fileID: 322201819}
   path: {fileID: 619891052}

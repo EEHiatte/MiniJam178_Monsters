@@ -7,8 +7,9 @@ public class TowerButtonsController : MonoBehaviour
 {
     private Dictionary<TowerButtonType, TowerButton> _towerButtons = new();
     [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private LevelController levelController;
     
-    private void Awake()
+    private void Start()
     {
         foreach (var towerButton in this.GetComponentsInChildren<TowerButton>())
         {
@@ -20,19 +21,35 @@ public class TowerButtonsController : MonoBehaviour
             _towerButtons.Add(towerButton.TowerType, towerButton);
             towerButton.Button.onClick.AddListener(() => TowerButtonClicked(towerButton));
         }
+        
+        levelController.OnCurrencyUpdate += LevelControllerOnOnCurrencyUpdate;
+        LevelControllerOnOnCurrencyUpdate(null, null);
+    }
+
+    private void LevelControllerOnOnCurrencyUpdate(object sender, EventArgs e)
+    {
+        foreach (var towerButton in _towerButtons.Values)
+        {
+            towerButton.OnCurrencyUpdate(levelController.PlayerCurrency);
+        }
     }
 
     private void TowerButtonClicked(TowerButton towerButton)
     {
         SetButtonsVisibility(false);
         var spawnedTower = Instantiate(towerButton.TowerToSpawn, Vector3.zero, quaternion.identity);
-        spawnedTower.PlaceTower();
+        spawnedTower.StartPlacement();
         spawnedTower.TowerPlacementResolved += SpawnedTowerResolved;
     }
 
 
     private void SpawnedTowerResolved(object sender, EventArgs e)
     {
+        if (sender is Tower tower) // sends null as sender if destroyed and not placed
+        {
+            levelController.PlayerCurrency -= tower.TowerCost;
+        }
+        
         SetButtonsVisibility(true);
     }
 

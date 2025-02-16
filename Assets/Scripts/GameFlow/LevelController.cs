@@ -18,6 +18,12 @@ public class LevelController : MonoBehaviour
 
     public GameObject LevelCompleteMenu;
 
+    public AudioClip waveStart;
+    public AudioClip ekgBlip;
+    public AudioClip FlatLine;
+
+    public AudioSource AudioPlayer;
+
     public int GoldSpent;
     public int MonstersKilled;
     public int TowersBuilt;
@@ -101,6 +107,7 @@ public class LevelController : MonoBehaviour
         {
             startWaveButton.enabled = false;
             StartCoroutine(SpawnNextWave());
+            AudioPlayer.PlayOneShot(waveStart);
         }
     }
 
@@ -173,6 +180,9 @@ public class LevelController : MonoBehaviour
         GameState = 1;
         LevelCompleteMenu.gameObject.SetActive(true);
         startWaveButton.gameObject.SetActive(false);
+        AudioPlayer.loop = true;
+        AudioPlayer.clip = FlatLine;
+        AudioPlayer.Play();
     }
     #endregion
 

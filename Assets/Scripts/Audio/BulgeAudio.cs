@@ -24,7 +24,14 @@ public class BulgeAudio : MonoBehaviour
 
     public void EndOfPath()
     {
-        audioSource.PlayOneShot(clip);
+        if (levelController.PlayerHealth > 0)
+        {
+            audioSource.PlayOneShot(clip);
+            if (Mathf.Lerp(0.5f, 5f, levelController.PlayerHealth / levelController.PlayerMaxHealth) < 1)
+            {
+                audioSource.PlayOneShot(levelController.ekgBlip);
+            }
+        }
         splineAnimator.Duration = Mathf.Lerp(0.5f, 5f, levelController.PlayerHealth / levelController.PlayerMaxHealth);
         splineAnimator.Restart(true);
     }

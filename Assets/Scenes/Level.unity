@@ -3133,6 +3133,7 @@ MonoBehaviour:
   audioSource: {fileID: 1790941353}
   clip: {fileID: 8300000, guid: fbd66016cc4e5ee4f996e956463d2be8, type: 3}
   splineAnimator: {fileID: 1881114030}
+  levelController: {fileID: 2128815335}
 --- !u!1 &1811511106
 GameObject:
   m_ObjectHideFlags: 0
@@ -4110,6 +4111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHealth: 50
+  PlayerMaxHealth: 0
   healthMeter: {fileID: 1776682719}
   currencyMeter: {fileID: 322201819}
   LevelCompleteMenu: {fileID: 188208775}

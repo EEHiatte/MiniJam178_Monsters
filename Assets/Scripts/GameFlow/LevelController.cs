@@ -12,6 +12,7 @@ public class LevelController : MonoBehaviour
 {
 
     public float PlayerHealth = 0;
+    public float PlayerMaxHealth = 0;
     public TextMeshProUGUI healthMeter;
     public TextMeshProUGUI currencyMeter;
 
@@ -49,6 +50,7 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         GameState = 0;
+        PlayerMaxHealth = PlayerHealth;
         UpdateMeters();
         startWaveButton.onClick.AddListener(OnStartWaveButtonPressed);
         PlayerCurrency = 100;

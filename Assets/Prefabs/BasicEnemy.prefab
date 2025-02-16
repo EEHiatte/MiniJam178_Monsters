@@ -4968,7 +4968,7 @@ MonoBehaviour:
   displacement: 0.25
   Health: 150
   MaxHealth: 150
-  Speed: 5
+  Speed: 4
   Damage: 1
   currencyDrop: 5
   splineAnimator: {fileID: 994498576646403616}

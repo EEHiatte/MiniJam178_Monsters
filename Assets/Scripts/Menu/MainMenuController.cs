@@ -54,32 +54,39 @@ public class MainMenuController : MonoBehaviour
             switch (PlayerPrefs.GetInt("CompletedLevel"))
             {
                 case 0:
-                    Level1.enabled = true;
+                    Level1.interactable = true;
                     Level1.onClick.AddListener(OnLevel1ButtonClicked);
-                    Level2.enabled = false;
-                    Level3.enabled = false;
+                    Level2.interactable = false;
+                    Level2.onClick.AddListener(OnLevel2ButtonClicked);
+                    Level3.interactable = false;
+                    Level3.onClick.AddListener(OnLevel3ButtonClicked);
                     break;
                 case 1:
-                    Level1.enabled = true;
+                    Level1.interactable = true;
                     Level1.onClick.AddListener(OnLevel1ButtonClicked);
-                    Level2.enabled = true;
+                    Level2.interactable = true;
                     Level2.onClick.AddListener(OnLevel2ButtonClicked);
-                    Level3.enabled = false;
+                    Level3.interactable = false;
+                    Level3.onClick.AddListener(OnLevel3ButtonClicked);
                     break;
                 case 2:
-                    Level1.enabled = true;
+                    Level1.interactable = true;
                     Level1.onClick.AddListener(OnLevel1ButtonClicked);
-                    Level2.enabled = true;
+                    Level2.interactable = true;
                     Level2.onClick.AddListener(OnLevel2ButtonClicked);
-                    Level3.enabled = true;
+                    Level3.interactable = true;
                     Level3.onClick.AddListener(OnLevel3ButtonClicked);
                     break;
             }
         }
         else
         {
-            Level1.enabled = true;
+            Level1.interactable = true;
             Level1.onClick.AddListener(OnLevel1ButtonClicked);
+            Level2.interactable = false;
+            Level2.onClick.AddListener(OnLevel2ButtonClicked);
+            Level3.interactable = false;
+            Level3.onClick.AddListener(OnLevel3ButtonClicked);
         }
     }
 

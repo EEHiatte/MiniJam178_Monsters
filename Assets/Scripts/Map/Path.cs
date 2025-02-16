@@ -80,7 +80,28 @@ public class Path : MonoBehaviour
             displacementPoints.RemoveAt(index);
         }
     }
-    
+
+    private void Awake()
+    {
+        foreach (MeshFilter filter in levelBackgroundPathMeshFilters) 
+        { 
+            filter.gameObject.SetActive(false);
+        }
+        foreach (MeshFilter filter in levelPathMeshFilters)
+        {
+            filter.gameObject.SetActive(false);
+        }
+        if (PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            splineContainer = levelSplineContainers[PlayerPrefs.GetInt("CurrentLevel")];
+            bulgeTransform = levelBulgeTransforms[PlayerPrefs.GetInt("CurrentLevel")];
+            pathMeshFilter = levelPathMeshFilters[PlayerPrefs.GetInt("CurrentLevel")];
+            backgroundPathMeshFilter = levelBackgroundPathMeshFilters[PlayerPrefs.GetInt("CurrentLevel")];
+            pathMeshFilter.gameObject.SetActive(true);
+            backgroundPathMeshFilter.gameObject.SetActive(true);
+        }
+    }
+
     private void Start()
     {
         pathMesh = pathMeshFilter.mesh;

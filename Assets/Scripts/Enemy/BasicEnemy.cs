@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Splines;
@@ -30,6 +34,38 @@ public class BasicEnemy : MonoBehaviour
     private bool slowed = false;
     
     public float CurrentSpeed => Speed * _speedModifier;
+    private PoisonHelper _poisonHelper = new PoisonHelper();
+
+    public class PoisonHelper
+    {
+        private float _tickTimer;
+        private Queue<int> _poisonTicks = new();
+        
+        public void AddTicks(int ticks, int damageAmount)
+        {
+            for(int i = 0; i < ticks; ++i)
+                _poisonTicks.Enqueue(damageAmount);
+        }
+        
+        public void Update(float deltaTime)
+        {
+            if (_tickTimer > 0f)
+                _tickTimer -= deltaTime;
+        }
+
+        public int TryTick()
+        {
+            if (_tickTimer <= 0f && _poisonTicks.Count > 0)
+            {
+                _tickTimer = .1f;
+                return _poisonTicks.Dequeue();
+            }
+
+            return 0;
+        }
+        
+        
+    }
 
     void Start()
     {
@@ -50,6 +86,13 @@ public class BasicEnemy : MonoBehaviour
                 _speedModifier = 1.0f;
                 ModifySpeed();
             }
+        }
+
+        _poisonHelper.Update(Time.deltaTime);
+        var poisonDamage = _poisonHelper.TryTick();
+        if (poisonDamage > 0)
+        {
+            TakeDamage(poisonDamage);
         }
     }
 
@@ -107,6 +150,11 @@ public class BasicEnemy : MonoBehaviour
         _speedModifier = 1.0f - (slowFactor / 100f);
         ModifySpeed();
         slowed = true;
+    }
+
+    public void OnPoison(int ticks, int damageAmountPerTick)
+    {
+        _poisonHelper.AddTicks(ticks, damageAmountPerTick);
     }
 
     private void Die()

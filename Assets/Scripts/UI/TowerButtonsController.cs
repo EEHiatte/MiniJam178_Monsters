@@ -47,6 +47,8 @@ public class TowerButtonsController : MonoBehaviour
     {
         if (sender is Tower tower) // sends null as sender if destroyed and not placed
         {
+            levelController.TowersBuilt += 1;
+            levelController.GoldSpent += tower.TowerCost;
             levelController.PlayerCurrency -= tower.TowerCost;
         }
         

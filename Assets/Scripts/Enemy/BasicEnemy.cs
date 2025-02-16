@@ -13,7 +13,7 @@ public class BasicEnemy : MonoBehaviour
     /// </summary>
     public float Health = 100;
     public float MaxHealth = 100;
-    public float Speed = 5;
+    [SerializeField] private float Speed = 5;
     public float Damage = 1;
     public int currencyDrop = 25;
 
@@ -23,6 +23,13 @@ public class BasicEnemy : MonoBehaviour
     private Color tempColor;
     
     public UnityAction OnDeath;
+
+    private float _speedModifier = 1.0f;
+    private float _speedModifierDuration = 2.0f;
+    private float _speedModifierCurrentTime = -1f;
+    private bool slowed = false;
+    
+    public float CurrentSpeed => Speed * _speedModifier;
 
     void Start()
     {
@@ -35,8 +42,34 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (_speedModifierCurrentTime > 0f)
+        {
+            _speedModifierCurrentTime -= Time.deltaTime;
+            if (_speedModifierCurrentTime <= 0f)
+            {
+                _speedModifier = 1.0f;
+                ModifySpeed();
+            }
+        }
     }
+
+    private void ModifySpeed()
+    {
+        // Yo fuck spline.
+        splineAnimator.Pause();
+
+        var elapsedTime = splineAnimator.ElapsedTime;
+        var previousDuration = splineAnimator.Duration;
+        splineAnimator.MaxSpeed = CurrentSpeed;
+
+        // Just rebuilding the new needed elapsed time based on what the previous one was with old duration.
+        var updatedDuration = splineAnimator.Duration;
+        var newModifiedElapsedTime = elapsedTime * updatedDuration / previousDuration;
+        
+        splineAnimator.ElapsedTime = newModifiedElapsedTime;
+        splineAnimator.Play();
+    }
+    
 
     public void EndOfPath()
     {
@@ -61,6 +94,19 @@ public class BasicEnemy : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void OnSlow(int slowFactor)
+    {
+        _speedModifierCurrentTime = _speedModifierDuration;
+        if (slowed)
+        {
+            return;
+        }
+        
+        _speedModifier = 1.0f - (slowFactor / 100f);
+        ModifySpeed();
+        slowed = true;
     }
 
     private void Die()

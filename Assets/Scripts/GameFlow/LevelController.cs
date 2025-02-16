@@ -103,7 +103,7 @@ public class LevelController : MonoBehaviour
                 BasicEnemy basicEnemy = t_enemy.GetComponent<BasicEnemy>();
 
                 basicEnemy.splineAnimator.Container = Path.SplineContainer;
-                basicEnemy.splineAnimator.MaxSpeed = basicEnemy.Speed;
+                basicEnemy.splineAnimator.MaxSpeed = basicEnemy.CurrentSpeed;
                 basicEnemy.splineAnimator.Play();
                 
                 Path.AddDisplacementObject(basicEnemy.transform, basicEnemy.radius, basicEnemy.displacement);

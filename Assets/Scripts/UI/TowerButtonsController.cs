@@ -64,4 +64,6 @@ public enum TowerButtonType
     None,
     WhiteBloodCell,
     HeatTower,
+    SlowTower,
+    AcidTower,
 }

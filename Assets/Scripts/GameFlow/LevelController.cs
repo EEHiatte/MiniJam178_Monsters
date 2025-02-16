@@ -62,7 +62,7 @@ public class LevelController : MonoBehaviour
         PlayerMaxHealth = PlayerHealth;
         UpdateMeters();
         startWaveButton.onClick.AddListener(OnStartWaveButtonPressed);
-        PlayerCurrency = 100;
+        PlayerCurrency = 30;
         switch (PlayerPrefs.GetInt("CurrentLevel"))
         {
             case 0:

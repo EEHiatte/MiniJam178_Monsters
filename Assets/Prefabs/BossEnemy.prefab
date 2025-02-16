@@ -4966,8 +4966,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 4
   displacement: 1
-  Health: 1000
-  MaxHealth: 1000
+  Health: 5000
+  MaxHealth: 5000
   Speed: 1
   Damage: 20
   currencyDrop: 300

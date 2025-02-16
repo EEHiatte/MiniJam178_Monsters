@@ -4970,7 +4970,7 @@ MonoBehaviour:
   MaxHealth: 300
   Speed: 2
   Damage: 5
-  currencyDrop: 30
+  currencyDrop: 15
   splineAnimator: {fileID: 994498576646403616}
   damagePlayer: {fileID: 8300000, guid: b3649f5371466f045a7c61aac6d081d6, type: 3}
 --- !u!58 &8429169004385455184

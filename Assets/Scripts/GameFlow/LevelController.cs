@@ -14,8 +14,16 @@ public class LevelController : MonoBehaviour
     public float PlayerHealth = 0;
     public TextMeshProUGUI healthMeter;
     public TextMeshProUGUI currencyMeter;
+
+    public GameObject LevelCompleteMenu;
+
+    public int GoldSpent;
+    public int MonstersKilled;
+    public int TowersBuilt;
     
     private int _playerCurrency;
+
+    public int GameState = -1;
 
     public int PlayerCurrency
     {
@@ -40,6 +48,7 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
+        GameState = 0;
         UpdateMeters();
         startWaveButton.onClick.AddListener(OnStartWaveButtonPressed);
         PlayerCurrency = 100;
@@ -116,12 +125,40 @@ public class LevelController : MonoBehaviour
     public void EndWave()
     {
         currentWaveNum++;
-        waveStarted = false;
-        startWaveButton.enabled = true;
+        if (currentWaveNum < Waves.Count)
+        {
+            waveStarted = false;
+            startWaveButton.enabled = true;
+        }
+        else
+        {
+            LevelComplete();
+        }
+    }
+
+    public void LevelComplete()
+    {
+        if (PlayerHealth <= 0)
+        {
+            GameState = 1;
+        }
+        else
+        {
+            GameState = 2;
+        }
+        LevelCompleteMenu.gameObject.SetActive(true);
+        startWaveButton.gameObject.SetActive(false);
+    }
+
+    public void LevelFailed()
+    {
+        GameState = 1;
+        LevelCompleteMenu.gameObject.SetActive(true);
+        startWaveButton.gameObject.SetActive(false);
     }
     #endregion
-    
-    
+
+
     public void UpdateMeters()
     {
         currencyMeter.text = PlayerCurrency.ToString();

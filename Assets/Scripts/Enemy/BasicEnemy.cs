@@ -45,6 +45,10 @@ public class BasicEnemy : MonoBehaviour
         levelController.enemiesSpawned--;
         levelController.CheckWaveComplete();
         levelController.UpdateMeters();
+        if (levelController.PlayerHealth <= 0)
+        {
+            levelController.LevelFailed();
+        }
         Destroy(gameObject);
     }
 
@@ -62,6 +66,7 @@ public class BasicEnemy : MonoBehaviour
     private void Die()
     {
         OnDeath?.Invoke();
+        levelController.MonstersKilled++;
         levelController.PlayerCurrency += currencyDrop;
         levelController.enemiesSpawned--;
         levelController.UpdateMeters();

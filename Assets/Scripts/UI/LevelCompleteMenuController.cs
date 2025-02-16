@@ -2,6 +2,7 @@ using System.Diagnostics.Contracts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelCompleteMenuController : MonoBehaviour
@@ -41,7 +42,7 @@ public class LevelCompleteMenuController : MonoBehaviour
                 LevelCompleteText.text = "Infected!";
                 break;
             case 2:
-                //TODO: Set Player Pref to next level completed
+                PlayerPrefs.SetInt("CompletedLevel", PlayerPrefs.GetInt("CurrentLevel"));
                 LevelCompleteText.text = "Level Complete!";
                 break;
         }
@@ -50,6 +51,6 @@ public class LevelCompleteMenuController : MonoBehaviour
     public void ReturnToMainMenu()
     {
         returnToMainMenuButton.onClick.RemoveAllListeners();
-        //TODO: Load the main menu
+        SceneManager.LoadScene("MainMenu");
     }
 }

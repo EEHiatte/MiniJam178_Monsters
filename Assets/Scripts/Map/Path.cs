@@ -21,16 +21,29 @@ public class Path : MonoBehaviour
     [SerializeField]
     private SplineContainer splineContainer; // Maybe change it to something dynamic instead of serialized.
 
-    [SerializeField] private Transform bulgeTransform;
+    [SerializeField] public Transform bulgeTransform;
     
     [SerializeField] private MeshFilter pathMeshFilter;
 
     [SerializeField] private MeshFilter backgroundPathMeshFilter;
-    
+
     [SerializeField] private ComputeShader pathDisplacementShader;
     
     [SerializeField] private int maxDisplacementPoints = 1024;
-    
+
+
+    /// <summary>
+    /// Lists of all Levels spline assets
+    /// </summary>
+    [SerializeField] public List<SplineContainer> levelSplineContainers;
+
+    [SerializeField] public List<Transform> levelBulgeTransforms;
+
+    [SerializeField] public List<MeshFilter> levelPathMeshFilters;
+
+    [SerializeField] public List<MeshFilter> levelBackgroundPathMeshFilters;
+
+
     private List<Transform> displacementTransforms = new List<Transform>();
     
     private List<DisplacementPoint> displacementPoints = new List<DisplacementPoint>();

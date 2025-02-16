@@ -17,6 +17,7 @@ public class BulgeAudio : MonoBehaviour
 
     void Awake()
     {
+        splineAnimator = levelController.Path.bulgeTransform.gameObject.GetComponent<SplineAnimate>();
         audioSource.PlayOneShot(clip);
         splineAnimator.Completed += EndOfPath;
     }

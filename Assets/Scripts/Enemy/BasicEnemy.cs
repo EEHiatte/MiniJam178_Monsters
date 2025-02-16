@@ -24,6 +24,9 @@ public class BasicEnemy : MonoBehaviour
     public SplineAnimate splineAnimator;
     private LevelController levelController;
 
+    //Enemy Sounds
+    public AudioClip damagePlayer;
+
     private Color tempColor;
     
     public UnityAction OnDeath;
@@ -121,6 +124,7 @@ public class BasicEnemy : MonoBehaviour
         levelController.enemiesSpawned--;
         levelController.CheckWaveComplete();
         levelController.UpdateMeters();
+        levelController.AudioPlayer.PlayOneShot(damagePlayer);
         if (levelController.PlayerHealth <= 0)
         {
             levelController.LevelFailed();

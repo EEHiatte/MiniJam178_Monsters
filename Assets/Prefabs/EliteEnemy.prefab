@@ -4972,6 +4972,8 @@ MonoBehaviour:
   Damage: 5
   currencyDrop: 100
   splineAnimator: {fileID: 994498576646403616}
+  audioPlayer: {fileID: 0}
+  damagePlayer: {fileID: 8300000, guid: b3649f5371466f045a7c61aac6d081d6, type: 3}
 --- !u!58 &8429169004385455184
 CircleCollider2D:
   m_ObjectHideFlags: 0

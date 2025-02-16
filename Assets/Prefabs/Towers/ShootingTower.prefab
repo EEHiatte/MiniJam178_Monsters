@@ -8,17 +8,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 550411188016446756, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 550411188016446756, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 1613203222639932586, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3673259166943143362, guid: 5d5bf430027ea9045b804281534b168a, type: 3}
+    - target: {fileID: 1834157091591278006, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909674698930024797, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 3673259166943143362, guid: 5d5bf430027ea9045b804281534b168a, type: 3}
     - target: {fileID: 3004685489929437753, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3004685489929437753, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: towerDamage

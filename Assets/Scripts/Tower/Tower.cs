@@ -42,7 +42,6 @@ public class Tower : MonoBehaviour
         _towerState = TowerState.Placing;
         FollowMouse();
         this.tag = "Tower_Placement";
-        towerPlacement.gameObject.SetActive(true);
         
         _towerActiveHelper.Reset(0);
     }
@@ -88,7 +87,7 @@ public class Tower : MonoBehaviour
             if (towerPlacement.IsValidPlacement)
             {
                 _towerState = TowerState.Active;
-                towerPlacement.gameObject.SetActive(false);
+                towerPlacement.DisableVisuals();
                 towerRange.ShowRangeIndicator(false);
                 this.tag = "Tower";
                 TowerPlacementResolved?.Invoke(this, null);

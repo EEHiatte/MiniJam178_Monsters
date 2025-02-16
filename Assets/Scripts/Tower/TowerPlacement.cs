@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class TowerPlacement : MonoBehaviour
@@ -9,7 +8,7 @@ public class TowerPlacement : MonoBehaviour
 
     public bool IsValidPlacement => _isValidPlacement;
 
-    private bool DEBUG = false;
+    private bool DEBUG = true;
 
     private void Awake()
     {
@@ -46,6 +45,11 @@ public class TowerPlacement : MonoBehaviour
         {
             Debug.Log($"OnTriggerExit with {other.gameObject.name}");
         }
+    }
+
+    public void DisableVisuals()
+    {
+        placementSprite.enabled = false;
     }
 
     private void SetColor()

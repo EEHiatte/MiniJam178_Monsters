@@ -4,7 +4,8 @@ using UnityEngine;
 public class ShootingTowerDamage : DamagingTowerBase
 {
     [SerializeField] private GameObject bulletPrefab;
-
+    [SerializeField] private AudioSource shootingAudioSource;
+    
     public override bool OnTryDamage(DamageInfo damageInfo)
     {
         var target = damageInfo.TowerRange.GetTarget(TargetingType.First);
@@ -28,6 +29,8 @@ public class ShootingTowerDamage : DamagingTowerBase
         var bullet = Instantiate(bulletPrefab, this.transform);
         bullet.transform.position = startingPosition;
 
+        shootingAudioSource.Play();
+        
         while (currentTime < firetime)
         {
             yield return new WaitForEndOfFrame();

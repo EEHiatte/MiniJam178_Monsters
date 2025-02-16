@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: towerFireRate
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: damagingTowerHandler

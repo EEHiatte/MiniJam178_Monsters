@@ -16,6 +16,7 @@ public class LevelController : MonoBehaviour
     public float PlayerMaxHealth = 0;
     public TextMeshProUGUI healthMeter;
     public TextMeshProUGUI currencyMeter;
+    public TextMeshProUGUI StartButtonText;
 
     public GameObject LevelCompleteMenu;
     public GameObject PauseMenu;
@@ -68,6 +69,7 @@ public class LevelController : MonoBehaviour
         UpdateMeters();
         startWaveButton.onClick.AddListener(OnStartWaveButtonPressed);
         PlayerCurrency = 30;
+        StartButtonText.text = "Start Wave " + (currentWaveNum + 1).ToString();
         switch (PlayerPrefs.GetInt("CurrentLevel"))
         {
             case 0:
@@ -122,6 +124,7 @@ public class LevelController : MonoBehaviour
     {
         if (!waveStarted)
         {
+            StartButtonText.text = "Wave " + (currentWaveNum + 1).ToString();
             startWaveButton.enabled = false;
             StartCoroutine(SpawnNextWave());
             AudioPlayer.PlayOneShot(waveStart);
@@ -167,13 +170,16 @@ public class LevelController : MonoBehaviour
     public void EndWave()
     {
         currentWaveNum++;
+        
         if (currentWaveNum < Waves.Count)
         {
+            StartButtonText.text = "Start Wave " + (currentWaveNum + 1).ToString();
             waveStarted = false;
             startWaveButton.enabled = true;
         }
         else
         {
+            StartButtonText.text = "Waves Complete";
             LevelComplete();
         }
     }

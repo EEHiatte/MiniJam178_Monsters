@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -20,8 +21,8 @@ public class PassiveDamagingObject : MonoBehaviour
         Acid,
         Trap
     }
-    
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         var enemyComponent = other.gameObject.GetComponent<BasicEnemy>();
 
@@ -37,8 +38,9 @@ public class PassiveDamagingObject : MonoBehaviour
                 enemyComponent.OnPoison(poisonTickAmount, (int)damageAmount);
                 break;
             }
-        }
+        }    
     }
+    
 
     private void Start()
     {

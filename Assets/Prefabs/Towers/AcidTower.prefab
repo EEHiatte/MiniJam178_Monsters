@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4841,6 +4841,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2909674698930024797, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7500439143475573383, guid: ba6cd2cbf101ac14c8594dc5ff62bb15, type: 3}
     - target: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: towerCost
       value: 100
@@ -4899,11 +4903,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8959213557166152196, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8959213557166152196, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

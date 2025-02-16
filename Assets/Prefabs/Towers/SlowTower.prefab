@@ -4843,12 +4843,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 550411188016446756, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 550411188016446756, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2909674698930024797, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3322800723505104728, guid: 91ec67ee5f9d9784d98b2a76fd7ef2a0, type: 3}
     - target: {fileID: 2909674698930024797, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: m_Color.b
       value: 1

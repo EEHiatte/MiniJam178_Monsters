@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 /// <summary>
@@ -17,6 +18,8 @@ public class LevelController : MonoBehaviour
     public TextMeshProUGUI currencyMeter;
 
     public GameObject LevelCompleteMenu;
+    public GameObject PauseMenu;
+    public bool paused = false;
 
     public AudioClip waveStart;
     public AudioClip ekgBlip;
@@ -71,6 +74,15 @@ public class LevelController : MonoBehaviour
             case 2:
                 Waves = Level3Waves;
                 break;
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !paused)
+        {
+            paused = true;
+            PauseMenu.gameObject.SetActive(true);
         }
     }
 

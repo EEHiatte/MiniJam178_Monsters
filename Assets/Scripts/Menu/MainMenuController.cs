@@ -8,9 +8,13 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
     // TODO: Store main menu buttons and other related objects and behavior.
+    [SerializeField] private GameObject mainMenuButtonsGroup;
+    
     [SerializeField] private Button playButton;
     
     [SerializeField] private Button quitButton;
+
+    [SerializeField] private GameObject levelButtonsGroup;
 
     [SerializeField] private Button Level1;
 
@@ -57,12 +61,8 @@ public class MainMenuController : MonoBehaviour
     private void OnPlayButtonClicked()
     {
         UnregisterMenuButtons();
-        playButton.gameObject.SetActive(false);
-        quitButton.gameObject.SetActive(false);
-        Level1.gameObject.SetActive(true);
-        Level2.gameObject.SetActive(true);
-        Level3.gameObject.SetActive(true);
-        backButton.gameObject.SetActive(true);
+        mainMenuButtonsGroup.SetActive(false);
+        levelButtonsGroup.SetActive(true);
         backButton.onClick.AddListener(OnBackButtonClicked);
 
         // TODO: Load the level scene
@@ -129,12 +129,8 @@ public class MainMenuController : MonoBehaviour
         Level2.onClick.RemoveAllListeners();
         Level3.onClick.RemoveAllListeners();
         backButton.onClick.RemoveAllListeners();
-        playButton.gameObject.SetActive(true);
-        quitButton.gameObject.SetActive(true);
-        Level1.gameObject.SetActive(false);
-        Level2.gameObject.SetActive(false);
-        Level3.gameObject.SetActive(false);
-        backButton.gameObject.SetActive(false);
+        mainMenuButtonsGroup.SetActive(true);
+        levelButtonsGroup.SetActive(false);
     }
 
     private void LoadLevel(int level)

@@ -49,7 +49,6 @@ public class Path : MonoBehaviour
 
     public void AddDisplacementObject(Transform displacer, float radius, float strength)
     {
-        Debug.Log($"Path - Line: 52 - displacer: {displacer}");
         displacementTransforms.Add(displacer);
         displacementPoints.Add(new DisplacementPoint
         {
@@ -118,12 +117,8 @@ public class Path : MonoBehaviour
         backgroundVertexBuffer.GetData(modifiedBackgroundPathVertices);
         
         pathMesh.vertices = modifiedPathVertices;
-        //pathMesh.RecalculateNormals();
-        //pathMesh.RecalculateBounds();
         
         backgroundPathMesh.vertices = modifiedBackgroundPathVertices;
-        //backgroundPathMesh.RecalculateNormals();
-        //backgroundPathMesh.RecalculateBounds();
     }
     
     private void OnDestroy()

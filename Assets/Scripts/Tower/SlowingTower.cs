@@ -13,7 +13,10 @@ public class SlowingTower : DamagingTowerBase
         
         foreach (var basicEnemy in enemiesInRange)
         {
-            basicEnemy.OnSlow((int)damageInfo.Damage);
+            if (basicEnemy != null)
+            {
+                basicEnemy.OnSlow((int)damageInfo.Damage);
+            }
         }
 
         return true;

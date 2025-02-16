@@ -11,7 +11,10 @@ public class DOTAoeTower : DamagingTowerBase
         
         foreach (var basicEnemy in enemiesInRange)
         {
-            basicEnemy.TakeDamage((int)damageInfo.Damage);
+            if (basicEnemy != null) // they could have gotten killed
+            {
+                basicEnemy.TakeDamage((int)damageInfo.Damage);
+            }
         }
 
         return true;

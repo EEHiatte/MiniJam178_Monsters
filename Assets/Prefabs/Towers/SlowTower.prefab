@@ -4875,15 +4875,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: towerCost
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: towerDamage
-      value: 25
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: towerFireRate
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6488053785066618345, guid: 28aa6dfb2943faf49bd65ab45bafd7ef, type: 3}
       propertyPath: damagingTowerHandler

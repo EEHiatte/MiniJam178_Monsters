@@ -60,7 +60,7 @@ public class BasicEnemy : MonoBehaviour
         {
             if (_tickTimer <= 0f && _poisonTicks.Count > 0)
             {
-                _tickTimer = .25f;
+                _tickTimer = .5f;
                 return _poisonTicks.Dequeue();
             }
 

@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 0
-  damageAmount: 3
+  damageAmount: 7
   collider: {fileID: 7633987454525950314}
   damageTimes: 0
   lifeDuration: 4
-  poisonTickAmount: 5
+  poisonTickAmount: 10
 --- !u!212 &5758440788696723665
 SpriteRenderer:
   m_ObjectHideFlags: 0

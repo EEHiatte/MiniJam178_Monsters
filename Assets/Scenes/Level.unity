@@ -500,8 +500,6 @@ MonoBehaviour:
   backgroundPathMeshFilter: {fileID: 1456107425}
   pathDisplacementShader: {fileID: 7200000, guid: f342d12b6c1b65d48988bb23c1ecb33f, type: 3}
   maxDisplacementPoints: 1024
-  radius: 2
-  strength: 0.5
 --- !u!4 &619891053
 Transform:
   m_ObjectHideFlags: 0
@@ -2493,10 +2491,16 @@ MonoBehaviour:
     Enemies: 00000000000000000000000000000000
   - spawnRate: 0.1
     Enemies: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  - spawnRate: 0.3
-    Enemies: 00000000000000000000000000000000
+  - spawnRate: 0.5
+    Enemies: 010000000000000000000000000000000000000000000000
+  - spawnRate: 0.5
+    Enemies: 01000000000000000000000001000000000000000000000001000000
+  - spawnRate: 1
+    Enemies: 020000000000000000000000000000000000000000000000
   EnemyPrefabs:
   - {fileID: 3675127871505815790, guid: 919fea97a13ba8848a4adc7fd681e5ce, type: 3}
+  - {fileID: 3675127871505815790, guid: c9cc6ea9f774fb74e9171ec6530ea1cf, type: 3}
+  - {fileID: 3675127871505815790, guid: e37406cc81f0bbc4792698543a4e9631, type: 3}
   enemiesSpawned: 0
 --- !u!4 &2128815336
 Transform:

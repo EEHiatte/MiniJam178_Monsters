@@ -4875,7 +4875,7 @@ GameObject:
   - component: {fileID: 994498576646403616}
   - component: {fileID: 3346887234675592153}
   m_Layer: 0
-  m_Name: BasicEnemy
+  m_Name: BossEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4891,7 +4891,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.01}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7105178648975691971}
@@ -4942,7 +4942,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.1272765, b: 0, a: 1}
+  m_Color: {r: 0.24528301, g: 0.09041321, b: 0.042808827, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4964,13 +4964,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00ca410b524f714c86ee65202a78b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
-  displacement: 0.25
-  Health: 100
-  MaxHealth: 100
-  Speed: 5
-  Damage: 1
-  currencyDrop: 25
+  radius: 4
+  displacement: 1
+  Health: 400
+  MaxHealth: 400
+  Speed: 1
+  Damage: 20
+  currencyDrop: 300
   splineAnimator: {fileID: 994498576646403616}
 --- !u!58 &8429169004385455184
 CircleCollider2D:

@@ -5,6 +5,9 @@ using UnityEngine.Splines.Interpolators;
 
 public class BasicEnemy : MonoBehaviour
 {
+    public float radius = 1f;
+    public float displacement = 0.25f;
+
     /// <summary>
     /// Enemy Stats
     /// </summary>
@@ -16,6 +19,8 @@ public class BasicEnemy : MonoBehaviour
 
     public SplineAnimate splineAnimator;
     private LevelController levelController;
+
+    private Color tempColor;
     
     public UnityAction OnDeath;
 
@@ -23,6 +28,8 @@ public class BasicEnemy : MonoBehaviour
     {
         levelController = FindFirstObjectByType<LevelController>();
         splineAnimator.Completed += EndOfPath;
+        GetComponent<SpriteRenderer>().material.SetColor("_Tint", GetComponent<SpriteRenderer>().color);
+        tempColor = GetComponent<SpriteRenderer>().color;
     }
 
     // Update is called once per frame
@@ -45,7 +52,7 @@ public class BasicEnemy : MonoBehaviour
     {
         Health -= damage;
 
-        GetComponent<SpriteRenderer>().color = Color.Lerp(Color.white, Color.red, Health/MaxHealth);
+        GetComponent<SpriteRenderer>().material.SetColor("_Tint", Color.Lerp(Color.white, tempColor, Health/MaxHealth));
         if (Health <= 0)
         {
             Die();

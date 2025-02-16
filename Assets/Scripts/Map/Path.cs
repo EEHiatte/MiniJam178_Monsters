@@ -31,6 +31,9 @@ public class Path : MonoBehaviour
     
     [SerializeField] private int maxDisplacementPoints = 1024;
 
+    [SerializeField] private List<Transform> additionalBulges = new List<Transform>();
+
+    [SerializeField] private bool standalone = false;
 
     /// <summary>
     /// Lists of all Levels spline assets
@@ -83,22 +86,27 @@ public class Path : MonoBehaviour
 
     private void Awake()
     {
-        foreach (MeshFilter filter in levelBackgroundPathMeshFilters) 
-        { 
-            filter.gameObject.SetActive(false);
-        }
-        foreach (MeshFilter filter in levelPathMeshFilters)
+        if(!standalone)
         {
-            filter.gameObject.SetActive(false);
-        }
-        if (PlayerPrefs.HasKey("CurrentLevel"))
-        {
-            splineContainer = levelSplineContainers[PlayerPrefs.GetInt("CurrentLevel")];
-            bulgeTransform = levelBulgeTransforms[PlayerPrefs.GetInt("CurrentLevel")];
-            pathMeshFilter = levelPathMeshFilters[PlayerPrefs.GetInt("CurrentLevel")];
-            backgroundPathMeshFilter = levelBackgroundPathMeshFilters[PlayerPrefs.GetInt("CurrentLevel")];
-            pathMeshFilter.gameObject.SetActive(true);
-            backgroundPathMeshFilter.gameObject.SetActive(true);
+            foreach (MeshFilter filter in levelBackgroundPathMeshFilters)
+            {
+                filter.gameObject.SetActive(false);
+            }
+
+            foreach (MeshFilter filter in levelPathMeshFilters)
+            {
+                filter.gameObject.SetActive(false);
+            }
+
+            if (PlayerPrefs.HasKey("CurrentLevel"))
+            {
+                splineContainer = levelSplineContainers[PlayerPrefs.GetInt("CurrentLevel")];
+                bulgeTransform = levelBulgeTransforms[PlayerPrefs.GetInt("CurrentLevel")];
+                pathMeshFilter = levelPathMeshFilters[PlayerPrefs.GetInt("CurrentLevel")];
+                backgroundPathMeshFilter = levelBackgroundPathMeshFilters[PlayerPrefs.GetInt("CurrentLevel")];
+                pathMeshFilter.gameObject.SetActive(true);
+                backgroundPathMeshFilter.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -117,6 +125,11 @@ public class Path : MonoBehaviour
         displacementBuffer = new ComputeBuffer(maxDisplacementPoints, Marshal.SizeOf(typeof(DisplacementPoint)));
         
         AddDisplacementObject(bulgeTransform, 2, 0.25f);
+        
+        foreach (var additionalBulge in additionalBulges)
+        {
+            AddDisplacementObject(additionalBulge, 2, 0.25f);
+        }
     }
     
     private void Update()

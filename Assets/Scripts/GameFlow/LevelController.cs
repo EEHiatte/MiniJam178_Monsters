@@ -34,6 +34,8 @@ public class LevelController : MonoBehaviour
     private int _playerCurrency;
 
     public int GameState = -1;
+    
+    public Color TintColor = Color.white;
 
     public int PlayerCurrency
     {
@@ -53,6 +55,9 @@ public class LevelController : MonoBehaviour
     // Current player gold, etc
     [SerializeField]
     private Path path;
+    
+    [SerializeField]
+    private Background background;
 
     public Path Path => path;
 

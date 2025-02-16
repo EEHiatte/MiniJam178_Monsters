@@ -64,6 +64,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _TimeOffset: 10
+    - _TimeScale: 1
     - _ZWrite: 0
     m_Colors:
     - _ABulgePosition: {r: 0.05, g: 0, b: 1.56, a: 0}
@@ -71,7 +72,7 @@ Material:
     - _CBulgePosition: {r: -7.86, g: 1.56, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tint: {r: 0.8018868, g: 0, b: 0, a: 0}
+    - _Tint: {r: 1, g: 0, b: 0.027672768, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7090639601212866950

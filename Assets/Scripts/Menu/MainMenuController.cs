@@ -25,6 +25,23 @@ public class MainMenuController : MonoBehaviour
         RegisterMenuButtons();
     }
 
+    private void Update()
+    {
+        //TODO REMOVE CHEATS
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            PlayerPrefs.SetInt("CompletedLevel", 0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            PlayerPrefs.SetInt("CompletedLevel", 1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            PlayerPrefs.SetInt("CompletedLevel", 2);
+        }
+    }
+
     private void RegisterMenuButtons()
     {
         playButton.onClick.AddListener(OnPlayButtonClicked);
@@ -55,39 +72,30 @@ public class MainMenuController : MonoBehaviour
             {
                 case 0:
                     Level1.interactable = true;
-                    Level1.onClick.AddListener(OnLevel1ButtonClicked);
                     Level2.interactable = false;
-                    Level2.onClick.AddListener(OnLevel2ButtonClicked);
                     Level3.interactable = false;
-                    Level3.onClick.AddListener(OnLevel3ButtonClicked);
                     break;
                 case 1:
                     Level1.interactable = true;
-                    Level1.onClick.AddListener(OnLevel1ButtonClicked);
                     Level2.interactable = true;
-                    Level2.onClick.AddListener(OnLevel2ButtonClicked);
                     Level3.interactable = false;
-                    Level3.onClick.AddListener(OnLevel3ButtonClicked);
                     break;
                 case 2:
                     Level1.interactable = true;
-                    Level1.onClick.AddListener(OnLevel1ButtonClicked);
                     Level2.interactable = true;
-                    Level2.onClick.AddListener(OnLevel2ButtonClicked);
                     Level3.interactable = true;
-                    Level3.onClick.AddListener(OnLevel3ButtonClicked);
                     break;
             }
         }
         else
         {
             Level1.interactable = true;
-            Level1.onClick.AddListener(OnLevel1ButtonClicked);
             Level2.interactable = false;
-            Level2.onClick.AddListener(OnLevel2ButtonClicked);
             Level3.interactable = false;
-            Level3.onClick.AddListener(OnLevel3ButtonClicked);
         }
+        Level1.onClick.AddListener(OnLevel1ButtonClicked);
+        Level2.onClick.AddListener(OnLevel2ButtonClicked);
+        Level3.onClick.AddListener(OnLevel3ButtonClicked);
     }
 
     private void OnLevel1ButtonClicked()
@@ -116,6 +124,7 @@ public class MainMenuController : MonoBehaviour
 
     private void OnBackButtonClicked()
     {
+        RegisterMenuButtons();
         Level1.onClick.RemoveAllListeners();
         Level2.onClick.RemoveAllListeners();
         Level3.onClick.RemoveAllListeners();

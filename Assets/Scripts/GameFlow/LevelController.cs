@@ -54,6 +54,18 @@ public class LevelController : MonoBehaviour
         UpdateMeters();
         startWaveButton.onClick.AddListener(OnStartWaveButtonPressed);
         PlayerCurrency = 100;
+        switch (PlayerPrefs.GetInt("CurrentLevel"))
+        {
+            case 0:
+                Waves = Level1Waves;
+                break;
+            case 1:
+                Waves = Level2Waves;
+                break;
+            case 2:
+                Waves = Level3Waves;
+                break;
+        }
     }
 
     #region Enemy Wave Spawning
@@ -70,7 +82,11 @@ public class LevelController : MonoBehaviour
     }
 
     [SerializeField]
-    public List<Wave> Waves = new List<Wave>();
+    private List<Wave> Waves = new List<Wave>();
+
+    public List<Wave> Level1Waves = new List<Wave>();
+    public List<Wave> Level2Waves = new List<Wave>();
+    public List<Wave> Level3Waves = new List<Wave>();
 
     public List<GameObject> EnemyPrefabs;
 

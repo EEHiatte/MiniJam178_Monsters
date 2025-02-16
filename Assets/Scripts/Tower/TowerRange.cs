@@ -73,7 +73,7 @@ public class TowerRange : MonoBehaviour
             return null;
         }
 
-        return enemiesInRange;
+        return enemiesInRange.ToList();
     }
 
     private BasicEnemy GetClosestEnemy()

@@ -8,7 +8,7 @@ public class TowerPlacement : MonoBehaviour
 
     public bool IsValidPlacement => _isValidPlacement;
 
-    private bool DEBUG = true;
+    private bool DEBUG = false;
 
     private void Awake()
     {

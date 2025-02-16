@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TowerButtonsController : MonoBehaviour
 {
@@ -37,7 +38,9 @@ public class TowerButtonsController : MonoBehaviour
     private void TowerButtonClicked(TowerButton towerButton)
     {
         SetButtonsVisibility(false);
-        var spawnedTower = Instantiate(towerButton.TowerToSpawn, Vector3.zero, quaternion.identity);
+        
+        var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+        var spawnedTower = Instantiate(towerButton.TowerToSpawn, Vector3.zero, randomRotation);
         spawnedTower.StartPlacement();
         spawnedTower.TowerPlacementResolved += SpawnedTowerResolved;
     }

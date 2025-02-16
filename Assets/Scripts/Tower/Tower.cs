@@ -44,7 +44,7 @@ public class Tower : MonoBehaviour
         this.tag = "Tower_Placement";
         towerPlacement.gameObject.SetActive(true);
         
-        _towerActiveHelper.Reset(towerFireRate);
+        _towerActiveHelper.Reset(0);
     }
     
     private void Update()

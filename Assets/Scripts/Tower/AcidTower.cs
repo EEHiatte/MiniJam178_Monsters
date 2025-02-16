@@ -16,7 +16,8 @@ public class AcidTower : DamagingTowerBase
         _explosionEffect.Play();
 
         var spawnPos = new Vector3(target.transform.position.x, target.transform.position.y, 0f);
-        var acid = Instantiate(_poisonObject, spawnPos, Quaternion.identity);
+        var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+        var acid = Instantiate(_poisonObject, spawnPos, randomRotation);
         return true;
     }
 }

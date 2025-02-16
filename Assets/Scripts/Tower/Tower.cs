@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Tower : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class Tower : MonoBehaviour
     
     [SerializeField] private int towerCost;
 
+    [SerializeField] private List<AudioSource> placementSounds;
+    
     public int TowerCost => towerCost;
     
     private TowerState _towerState = TowerState.Disabled;
@@ -90,6 +94,7 @@ public class Tower : MonoBehaviour
                 towerPlacement.DisableVisuals();
                 towerRange.ShowRangeIndicator(false);
                 this.tag = "Tower";
+                placementSounds[Random.Range(0, placementSounds.Count)].Play();
                 TowerPlacementResolved?.Invoke(this, null);
             }
         }

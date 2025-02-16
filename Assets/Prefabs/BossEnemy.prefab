@@ -4966,13 +4966,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 4
   displacement: 1
-  Health: 400
-  MaxHealth: 400
+  Health: 1000
+  MaxHealth: 1000
   Speed: 1
   Damage: 20
   currencyDrop: 300
   splineAnimator: {fileID: 994498576646403616}
-  audioPlayer: {fileID: 0}
   damagePlayer: {fileID: 8300000, guid: b3649f5371466f045a7c61aac6d081d6, type: 3}
 --- !u!58 &8429169004385455184
 CircleCollider2D:

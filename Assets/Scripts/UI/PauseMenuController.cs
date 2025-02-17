@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -30,6 +29,14 @@ public class PauseMenuController : MonoBehaviour
     {
         returnToMainMenuButton.onClick.RemoveAllListeners();
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Resume();
+        }
     }
 
     public void Resume()

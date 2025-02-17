@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerPlacement : MonoBehaviour
@@ -9,6 +11,8 @@ public class TowerPlacement : MonoBehaviour
     public bool IsValidPlacement => _isValidPlacement;
 
     private bool DEBUG = false;
+    
+    private List<Collider> currentColliders = new List<Collider>();
 
     private void Awake()
     {
@@ -21,7 +25,11 @@ public class TowerPlacement : MonoBehaviour
         {
             return;
         }
-        
+
+        if (!currentColliders.Contains(other))
+        {
+            currentColliders.Add(other);
+        }
         _isValidPlacement = false;
         SetColor();
         
@@ -31,6 +39,7 @@ public class TowerPlacement : MonoBehaviour
         }
     }
     
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Tower_Placement"))
@@ -38,7 +47,12 @@ public class TowerPlacement : MonoBehaviour
             return;
         }
         
-        _isValidPlacement = true;
+        
+        if (currentColliders.Contains(other))
+        {
+            currentColliders.Remove(other);
+        }
+        _isValidPlacement = currentColliders.Count <= 0;
         SetColor();
 
         if (DEBUG)

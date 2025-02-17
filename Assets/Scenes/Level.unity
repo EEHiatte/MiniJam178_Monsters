@@ -1124,21 +1124,21 @@ MonoBehaviour:
   additionalBulges: []
   standalone: 0
   levelSplineContainers:
-  - {fileID: 1811511110}
-  - {fileID: 1245626659}
   - {fileID: 831671638}
+  - {fileID: 1245626659}
+  - {fileID: 1811511110}
   levelBulgeTransforms:
-  - {fileID: 1881114029}
-  - {fileID: 1984764907}
   - {fileID: 453934607}
+  - {fileID: 1984764907}
+  - {fileID: 1881114029}
   levelPathMeshFilters:
-  - {fileID: 1811511109}
-  - {fileID: 1245626663}
   - {fileID: 831671637}
+  - {fileID: 1245626663}
+  - {fileID: 1811511109}
   levelBackgroundPathMeshFilters:
-  - {fileID: 1456107425}
-  - {fileID: 1237974593}
   - {fileID: 1743565377}
+  - {fileID: 1237974593}
+  - {fileID: 1456107425}
 --- !u!4 &619891053
 Transform:
   m_ObjectHideFlags: 0

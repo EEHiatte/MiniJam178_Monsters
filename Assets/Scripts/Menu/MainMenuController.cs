@@ -40,7 +40,7 @@ public class MainMenuController : MonoBehaviour
         //TODO REMOVE CHEATS
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            PlayerPrefs.SetInt("CompletedLevel", 0);
+            PlayerPrefs.DeleteKey("CompletedLevel");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {

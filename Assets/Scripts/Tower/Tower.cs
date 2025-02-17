@@ -98,7 +98,7 @@ public class Tower : MonoBehaviour
                 TowerPlacementResolved?.Invoke(this, null);
             }
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
         {
             TowerPlacementResolved?.Invoke(null, null);
             Destroy(this.gameObject);

@@ -16,6 +16,8 @@ public class MainMenuController : MonoBehaviour
 
     [SerializeField] private GameObject levelButtonsGroup;
 
+    [SerializeField] private GameObject helpMenuGroup;
+
     [SerializeField] private Button Level1;
 
     [SerializeField] private Button Level2;
@@ -23,6 +25,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button Level3;
 
     [SerializeField] private Button backButton;
+
+    [SerializeField] private Button helpBackButton;
 
     [SerializeField] private Button helpButton;
 
@@ -67,6 +71,8 @@ public class MainMenuController : MonoBehaviour
         UnregisterMenuButtons();
         mainMenuButtonsGroup.SetActive(false);
         levelButtonsGroup.SetActive(false);
+        helpMenuGroup.SetActive(true);
+        helpBackButton.onClick.AddListener(OnBackButtonClicked);
     }
     
     private void OnPlayButtonClicked()
@@ -140,7 +146,9 @@ public class MainMenuController : MonoBehaviour
         Level2.onClick.RemoveAllListeners();
         Level3.onClick.RemoveAllListeners();
         backButton.onClick.RemoveAllListeners();
+        helpBackButton.onClick.RemoveAllListeners();
         mainMenuButtonsGroup.SetActive(true);
+        helpMenuGroup.SetActive(false);
         levelButtonsGroup.SetActive(false);
     }
 

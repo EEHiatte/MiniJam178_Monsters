@@ -4937,13 +4937,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00ca410b524f714c86ee65202a78b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  displacement: 1
+  radius: 3
+  displacement: 0.75
   Health: 5000
   MaxHealth: 5000
   Speed: 1
   Damage: 20
-  currencyDrop: 300
+  currencyDrop: 50
   splineAnimator: {fileID: 994498576646403616}
   damagePlayer: {fileID: 8300000, guid: b3649f5371466f045a7c61aac6d081d6, type: 3}
   _poisonTrail: {fileID: 1859457562602305703}

@@ -86,7 +86,7 @@ public class LevelController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !paused)
+        if (Input.GetKeyDown(KeyCode.Escape) && !paused && GameState == 0)
         {
             paused = true;
             PauseMenu.gameObject.SetActive(true);
@@ -179,7 +179,7 @@ public class LevelController : MonoBehaviour
         }
         else
         {
-            StartButtonText.text = "Waves Complete";
+            startWaveButton.gameObject.SetActive(false);
             LevelComplete();
         }
     }
@@ -195,7 +195,6 @@ public class LevelController : MonoBehaviour
             GameState = 2;
         }
         LevelCompleteMenu.gameObject.SetActive(true);
-        startWaveButton.gameObject.SetActive(false);
     }
 
     public void LevelFailed()

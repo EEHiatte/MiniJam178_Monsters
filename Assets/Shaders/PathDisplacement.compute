@@ -38,14 +38,25 @@ void CSMain (uint id : SV_DispatchThreadID)
         DisplacementPoint dp = _DisplacementPoints[i];
         float3 diff = originalPos - dp.position;
         float dist = length(diff);
-        float factor = 1.0 - smoothstep(0.0, dp.radius, dist);
+        float factor = 1.0 - smoothstep(0.0, dp.radius, dist * 1.5);
         totalDisplacement += normalize(diff) * dp.strength * factor;
 
         diff = bgOriginalPos - dp.position;
         dist = length(diff);
-        factor = 1.0 - smoothstep(0.0, dp.radius, dist);
+        factor = 1.0 - smoothstep(0.0, dp.radius, dist * 1.5);
         totalBgDisplacement += normalize(diff) * dp.strength * factor;
     }
+
+    float displacementMin = -0.5;
+    float displacementMax = 0.5;
+    
+    totalDisplacement.x = clamp(totalDisplacement.x, displacementMin, displacementMax);
+    totalDisplacement.y = clamp(totalDisplacement.y, displacementMin, displacementMax);
+    totalDisplacement.z = clamp(totalDisplacement.z, displacementMin, displacementMax);
+
+    totalBgDisplacement.x = clamp(totalBgDisplacement.x, displacementMin, displacementMax);
+    totalBgDisplacement.y = clamp(totalBgDisplacement.y, displacementMin, displacementMax);
+    totalBgDisplacement.z = clamp(totalBgDisplacement.z, displacementMin, displacementMax);
 
     // Update the vertex position.
     v.position = originalPos + totalDisplacement;

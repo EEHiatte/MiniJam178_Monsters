@@ -4943,7 +4943,7 @@ MonoBehaviour:
   MaxHealth: 5000
   Speed: 1
   Damage: 20
-  currencyDrop: 50
+  currencyDrop: 20
   splineAnimator: {fileID: 994498576646403616}
   damagePlayer: {fileID: 8300000, guid: b3649f5371466f045a7c61aac6d081d6, type: 3}
   _poisonTrail: {fileID: 1859457562602305703}

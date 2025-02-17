@@ -4937,8 +4937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00ca410b524f714c86ee65202a78b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  displacement: 1
+  radius: 3
+  displacement: 0.75
   Health: 5000
   MaxHealth: 5000
   Speed: 1

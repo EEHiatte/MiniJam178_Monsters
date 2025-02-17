@@ -144,10 +144,11 @@ public class BasicEnemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        var healthBefore = Health;
         Health -= damage;
 
         GetComponent<SpriteRenderer>().material.SetColor("_Tint", Color.Lerp(Color.white, tempColor, Health/MaxHealth));
-        if (Health <= 0)
+        if (healthBefore > 0 && Health <= 0)
         {
             Die();
         }

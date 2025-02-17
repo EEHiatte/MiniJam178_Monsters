@@ -24,6 +24,8 @@ public class MainMenuController : MonoBehaviour
 
     [SerializeField] private Button backButton;
 
+    [SerializeField] private Button helpButton;
+
     private void Start()
     {
         RegisterMenuButtons();
@@ -49,13 +51,22 @@ public class MainMenuController : MonoBehaviour
     private void RegisterMenuButtons()
     {
         playButton.onClick.AddListener(OnPlayButtonClicked);
+        helpButton.onClick.AddListener(OnHelpButtonClicked);
         quitButton.onClick.AddListener(OnQuitButtonClicked);
     }
     
     private void UnregisterMenuButtons()
     {
         playButton.onClick.RemoveListener(OnPlayButtonClicked);
+        helpButton.onClick.RemoveListener(OnHelpButtonClicked);
         quitButton.onClick.RemoveListener(OnQuitButtonClicked);
+    }
+
+    private void OnHelpButtonClicked()
+    {
+        UnregisterMenuButtons();
+        mainMenuButtonsGroup.SetActive(false);
+        levelButtonsGroup.SetActive(false);
     }
     
     private void OnPlayButtonClicked()
@@ -68,7 +79,7 @@ public class MainMenuController : MonoBehaviour
         // TODO: Load the level scene
         if (PlayerPrefs.HasKey("CompletedLevel")) 
         {
-            switch (PlayerPrefs.GetInt("CompletedLevel"))
+            switch (PlayerPrefs.GetInt("CompletedLevel") + 1)
             {
                 case 0:
                     Level1.interactable = true;

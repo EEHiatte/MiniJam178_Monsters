@@ -153,7 +153,8 @@ public class LevelController : MonoBehaviour
                 basicEnemy.OnDeath += () => Path.RemoveDisplacementObject(basicEnemy.transform);
 
                 enemiesSpawned++;
-                yield return new WaitForSeconds(Waves[currentWaveNum].spawnRate);
+                if(currentWaveNum < Waves.Count)
+                    yield return new WaitForSeconds(Waves[currentWaveNum].spawnRate);
             }
         }
         yield return null;
@@ -171,6 +172,8 @@ public class LevelController : MonoBehaviour
     {
         currentWaveNum++;
         
+        StopAllCoroutines();
+
         if (currentWaveNum < Waves.Count)
         {
             StartButtonText.text = "Start Wave " + (currentWaveNum + 1).ToString();
@@ -193,6 +196,7 @@ public class LevelController : MonoBehaviour
         else
         {
             GameState = 2;
+            PlayerPrefs.SetInt("CompletedLevel", PlayerPrefs.GetInt("CurrentLevel"));
         }
         LevelCompleteMenu.gameObject.SetActive(true);
     }

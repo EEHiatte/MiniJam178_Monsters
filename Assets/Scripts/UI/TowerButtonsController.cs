@@ -9,6 +9,7 @@ public class TowerButtonsController : MonoBehaviour
     private Dictionary<TowerButtonType, TowerButton> _towerButtons = new();
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private LevelController levelController;
+    [SerializeField] private TooltipTextController tooltipTextController;
     
     private void Start()
     {
@@ -21,10 +22,25 @@ public class TowerButtonsController : MonoBehaviour
 
             _towerButtons.Add(towerButton.TowerType, towerButton);
             towerButton.Button.onClick.AddListener(() => TowerButtonClicked(towerButton));
+            towerButton.MouseOver += TowerButtonOnMouseOver;
+            towerButton.MouseExit += TowerButtonOnMouseExit;
         }
         
         levelController.OnCurrencyUpdate += LevelControllerOnOnCurrencyUpdate;
         LevelControllerOnOnCurrencyUpdate(null, null);
+    }
+
+    private void TowerButtonOnMouseOver(object sender, EventArgs e)
+    {
+        if (sender is TowerButton towerButton)
+        {
+            tooltipTextController.OnTowerButtonHover(towerButton.TowerType);
+        }
+    }
+    
+    private void TowerButtonOnMouseExit(object sender, EventArgs e)
+    {
+        tooltipTextController.OnTowerButtonLeave();
     }
 
     private void LevelControllerOnOnCurrencyUpdate(object sender, EventArgs e)
@@ -38,6 +54,7 @@ public class TowerButtonsController : MonoBehaviour
     private void TowerButtonClicked(TowerButton towerButton)
     {
         SetButtonsVisibility(false);
+        tooltipTextController.OnTowerPlacement();
         
         var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
         var spawnedTower = Instantiate(towerButton.TowerToSpawn, Vector3.zero, randomRotation);
@@ -54,7 +71,7 @@ public class TowerButtonsController : MonoBehaviour
             levelController.GoldSpent += tower.TowerCost;
             levelController.PlayerCurrency -= tower.TowerCost;
         }
-        
+        tooltipTextController.OnTowerPlacementEnd();
         SetButtonsVisibility(true);
     }
 

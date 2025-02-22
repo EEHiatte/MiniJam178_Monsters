@@ -1,8 +1,9 @@
+using System;
 using TMPro;
-using UnityEngine;
+using UnityEngine;using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TowerButton : MonoBehaviour
+public class TowerButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TowerButtonType towerType;
     [SerializeField] private GameObject lockedDimmer;
@@ -19,6 +20,9 @@ public class TowerButton : MonoBehaviour
 
     private int _cachedPlayerCurrency;
     private int _cachedPrice;
+
+    public event EventHandler MouseOver;
+    public event EventHandler MouseExit;
     
     private void Awake()
     {
@@ -45,5 +49,15 @@ public class TowerButton : MonoBehaviour
     private void SetButtonInteractable()
     {
         button.interactable = unlocked && _cachedPlayerCurrency >= _cachedPrice;
+    }
+    
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        MouseOver?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        MouseExit?.Invoke(this, EventArgs.Empty);
     }
 }

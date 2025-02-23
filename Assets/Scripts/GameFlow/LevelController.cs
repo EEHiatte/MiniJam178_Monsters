@@ -131,6 +131,7 @@ public class LevelController : MonoBehaviour
             StartButtonText.text = "Wave " + (currentWaveNum + 1).ToString();
             startWaveButton.enabled = false;
             StartCoroutine(SpawnNextWave());
+            AudioPlayer.volume = 0.3f;
             AudioPlayer.PlayOneShot(waveStart);
         }
     }
@@ -236,6 +237,7 @@ public class LevelController : MonoBehaviour
         startWaveButton.gameObject.SetActive(false);
         AudioPlayer.loop = true;
         AudioPlayer.clip = FlatLine;
+        AudioPlayer.volume = 0.35f;
         AudioPlayer.Play();
     }
     #endregion

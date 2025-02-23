@@ -134,6 +134,7 @@ public class BasicEnemy : MonoBehaviour
         levelController.enemiesSpawned--;
         levelController.CheckWaveComplete();
         levelController.UpdateMeters();
+        levelController.AudioPlayer.volume = 0.5f;
         levelController.AudioPlayer.PlayOneShot(damagePlayer);
         if (levelController.PlayerHealth <= 0)
         {

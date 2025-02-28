@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 /// <summary>
@@ -88,10 +87,25 @@ public class LevelController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !paused && GameState == 0)
+        if (GameState != 0 || paused)
+        {
+            return;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             paused = true;
             PauseMenu.gameObject.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            OnFastForwardButtonPressed();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnStartWaveButtonPressed();
         }
     }
 
